@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>ruscello-parent</artifactId>
+        <groupId>org.ruscello</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ruscello-bom</artifactId>
+    <packaging>pom</packaging>
+    <name>Ruscello BOM</name>
+    <description>
+        Bill of materials to make sure a consistent set of versions is used for Ruscello modules.
+    </description>
+
+    <properties>
+        <agrona.version>0.9.28</agrona.version>
+        <guava.version>27.0.1-jre</guava.version>
+        <jackson.version>2.9.8</jackson.version>
+        <lmdb.version>0.6.1</lmdb.version>
+        <rocksdb.version>5.17.2</rocksdb.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <spring.version>2.1.1.RELEASE</spring.version>
+
+        <lucene-analyzers-common.version>7.6.0</lucene-analyzers-common.version>
+        <rome.version>1.12.0</rome.version>
+        <mbassador.version>1.3.2</mbassador.version>
+        <MessageBus.version>1.20</MessageBus.version>
+        <disruptor.version>3.4.2</disruptor.version>
+        <log4j-slf4j-impl.version>2.9.0</log4j-slf4j-impl.version>
+        <spring-shell-starter.version>2.0.1.RELEASE</spring-shell-starter.version>
+        <commons-cli.version>1.4</commons-cli.version>
+        <jcommander.version>1.72</jcommander.version>
+        <jline.version>3.9.0</jline.version>
+        <junit-pioneer.version>0.3.0</junit-pioneer.version>
+        <hamcrest-library.version>1.3</hamcrest-library.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.rocksdb</groupId>
+                <artifactId>rocksdbjni</artifactId>
+                <version>${rocksdb.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.lmdbjava</groupId>
+                <artifactId>lmdbjava</artifactId>
+                <version>${lmdb.version}</version>
+            </dependency>
+
+
+            <!-- TODO: any good high performance libraries for serialization? -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <!--<dependency>-->
+                <!--<groupId>org.yaml</groupId>-->
+                <!--<artifactId>snakeyaml</artifactId>-->
+                <!--<version>1.21</version>-->
+            <!--</dependency>-->
+
+            <!-- TODO: Supposedly faster compared to default LMDB direct buffer -->
+            <!-- Add a performance benchmark for this -->
+            <dependency>
+                <groupId>org.agrona</groupId>
+                <artifactId>agrona</artifactId>
+                <version>${agrona.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+
+            <!--
+            TODO: This is for using lucenes ngram/edge ngram which allows us to get started quickly however 1.5M dependency
+            for just seems like a bit much. Keep for now but consider replacing
+            -->
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-analyzers-common</artifactId>
+                <version>${lucene-analyzers-common.version}</version>
+            </dependency>
+
+
+            <!-- is there a bom we can use? -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+
+            <!-- RSS / Atom feeds -->
+            <dependency>
+                <groupId>com.rometools</groupId>
+                <artifactId>rome</artifactId>
+                <version>${rome.version}</version>
+            </dependency>
+
+
+            <!-- guava, one of these, or roll own -->
+            <!-- event bus -->
+            <dependency>
+                <groupId>net.engio</groupId>
+                <artifactId>mbassador</artifactId>
+                <version>${mbassador.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dorkbox</groupId>
+                <artifactId>MessageBus</artifactId>
+                <version>${MessageBus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
+            </dependency>
+            <!-- https://code.google.com/archive/p/mvp4g/wikis/EventBus.wiki -->
+            <!-- https://code.google.com/archive/p/simpleeventbus/ -->
+            <!-- http://code.mycila.com/pubsub/ -->
+
+
+            <!--TODO: should we just use log4j2?-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <!--<dependency>-->
+            <!--<groupId>org.apache.logging.log4j</groupId>-->
+            <!--<artifactId>log4j-core</artifactId>-->
+            <!--<version>2.11.0</version>-->
+            <!--</dependency>-->
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${log4j-slf4j-impl.version}</version>
+            </dependency>
+
+            <!-- TODO: do we want to bring in any dependencies for shell / CLI such as spring shell -->
+            <dependency>
+                <groupId>org.springframework.shell</groupId>
+                <artifactId>spring-shell-starter</artifactId>
+                <version>${spring-shell-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-cli</groupId>
+                <artifactId>commons-cli</artifactId>
+                <version>${commons-cli.version}</version>
+            </dependency>
+
+            <!-- command line parsing -->
+            <dependency>
+                <groupId>com.beust</groupId>
+                <artifactId>jcommander</artifactId>
+                <version>${jcommander.version}</version>
+            </dependency>
+
+            <!-- handling console input -->
+            <dependency>
+                <groupId>org.jline</groupId>
+                <artifactId>jline</artifactId>
+                <version>${jline.version}</version>
+            </dependency>
+
+            <!--kms-->
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-kms</artifactId>
+                <version>1.11.442</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.cloud</groupId>
+                <artifactId>google-cloud-kms</artifactId>
+                <version>0.69.0-beta</version>
+            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.google.apis</groupId>-->
+                <!--<artifactId>google-api-services-cloudkms</artifactId>-->
+                <!--<version>v1-rev26-1.23.0</version>-->
+            <!--</dependency>-->
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit-pioneer</groupId>
+                <artifactId>junit-pioneer</artifactId>
+                <version>${junit-pioneer.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-library</artifactId>
+                <version>${hamcrest-library.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
