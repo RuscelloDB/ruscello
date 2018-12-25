@@ -6,7 +6,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 /**
  * 128-bit murmur3 algorithm, x64 variant (little-endian)
  */
-public class MurmurHash3Guava implements Hasher {
+public class GuavaMurmur3Hash implements Hasher {
 
     @Override
     public String hash(String s) {
