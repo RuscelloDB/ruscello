@@ -1,3 +1,10 @@
+# Ruscello
+
+Event store database
+
+
+
+
 https://github.com/deephacks/RxLMDBEventStore Entry Point: https://github.com/EventStore/EventStore/blob/02e98bc67327c1dac7cfcba32b7a16ed2acaa067/src/EventStore.Core/ClusterVNode.cs
 https://www.slideshare.net/vhaydin/it-weekendukraine2013event-store
 
